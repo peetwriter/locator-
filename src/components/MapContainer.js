@@ -1,17 +1,25 @@
 import React from 'react';
 import GoogleApi from './GoogleApi';
 import Map from './Map';
+import Marker from './Marker';
 
 import './map.css';
 
 export class MapContainer extends React.Component {
+  mapMoveHandler(){
+    console.log('map is moved');
+  }
+
   render() {
-    // if (!this.props.loaded) {
-    //   return <div>Loading...</div>
-    // }
     return (
       <div className='map-container'>
-        <Map google={this.props.google}/>
+        <Map
+          google={this.props.google}
+          onMove={this.mapMoveHandler.bind(this)}
+          centerAroundCurrentLocation
+        >
+          <Marker/>
+        </Map>
       </div>
     )
   }
