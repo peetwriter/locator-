@@ -3,3 +3,12 @@ export const camelize = function(str) {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }).join('');
 }
+
+
+export const getCurrentPosition = function(cb) {
+  if (navigator && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((pos) => {
+      cb(pos.coords);
+    });
+  }
+}

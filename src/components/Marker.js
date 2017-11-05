@@ -4,11 +4,12 @@ import {camelize} from '../utils';
 
 export default class Marker extends React.Component {
 
-  componentDidUpdate(prevProps) {
-    if ((this.props.map !== prevProps.map) ||
-      (this.props.position !== prevProps.position)) {
-        this.renderMarker();
+  shouldComponentUpdate(nextProps) {
+    if ((this.props.map !== nextProps.map) ||
+      (this.props.position !== nextProps.position)) {
+        return true;
     }
+    return false;
   }
 
   renderMarker() {
@@ -46,6 +47,7 @@ export default class Marker extends React.Component {
   }
 
   render() {
+    this.renderMarker();
     return null;
   }
 }

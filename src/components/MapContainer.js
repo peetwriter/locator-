@@ -11,6 +11,7 @@ export class MapContainer extends React.Component {
   }
 
   render() {
+    const { markers } = this.props;
     return (
       <div className='map-container'>
         <Map
@@ -18,7 +19,14 @@ export class MapContainer extends React.Component {
           onMove={this.mapMoveHandler.bind(this)}
           centerAroundCurrentLocation
         >
-          <Marker/>
+          {
+            markers.map( marker  =>
+              <Marker
+                key={marker.lat + marker.lng}
+                position={marker}
+              />
+            )
+          }
         </Map>
       </div>
     )

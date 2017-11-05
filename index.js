@@ -7,34 +7,28 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackConfig = require('./webpack.config.js')
 
 const app = express()
-const server = http.createServer(app)
+const server = require('http').Server(app);
 const io = socketIo(server)
 
 app.use(express.static(__dirname + '/public'))
 app.use(webpackDevMiddleware(webpack(webpackConfig)))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/', (req, res) => {
-  const { Body, From, MediaUrl0 } = req.body
-  const message = {
-    body: Body,
-    from: From.slice(8),
-    img: MediaUrl0
-  }
-  io.emit('message', message)
-  res.send(`
-           <Response>
-            <Message>Thanks for texting!</Message>
-           </Response>
-           `)
-})
 
 io.on('connection', socket => {
-  socket.on('message', body => {
-    socket.broadcast.emit('message', {
+  socket.on('clientMessage', body => {
+    socket.broadcast.emit('serverMessage', {
       body,
       from: socket.id.slice(8)
     })
+  })
+
+
+  socket.on('coordinates', body => {
+    socket.broadcast.emit('coordinatesChanged', {
+      from: socket.id.slice(8),
+      coordinates: body.coordinates
+    });
   })
 })
 

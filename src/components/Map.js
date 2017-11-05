@@ -9,6 +9,7 @@ export class Map extends React.Component {
   constructor(props) {
     super(props);
 
+
     const {lat, lng} = this.props.initialCenter;
     this.state = {
       currentLocation: {
@@ -30,10 +31,8 @@ export class Map extends React.Component {
 
   componentDidMount(){
     if (this.props.centerAroundCurrentLocation) {
-      console.log(navigator.geolocation);
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
-          console.log("position: ", pos);
           const coords = pos.coords;
           this.setState({
             currentLocation: {
@@ -55,8 +54,6 @@ export class Map extends React.Component {
         }
 
         let success = (pos) => {
-          console.log('in Wathch!!!!');
-          console.log(pos);
           const coords = pos.coords;
           this.setState({
             currentLocation: {
@@ -68,7 +65,6 @@ export class Map extends React.Component {
         }
 
         let id = navigator.geolocation.watchPosition(success, error, options);
-        console.log('navigator watch pos id:', id);
       }
     }
   }

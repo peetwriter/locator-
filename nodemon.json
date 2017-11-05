@@ -1,0 +1,13 @@
+{
+    "exec": "babel-node index.js",
+    "ext": "js",
+    "stdout": true,
+    "readable": true,
+    "debug": true,
+    "ignore": ["node_modules/*", "src/*"],
+    "signal": "SIGHUP",
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "watch": [".*"]
+}

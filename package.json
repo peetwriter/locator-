@@ -9,8 +9,6 @@
     "svg-loader": "0.0.2"
   },
   "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.0.1",
     "babel-core": "^6.7.7",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-class-properties": "^6.6.0",
@@ -18,12 +16,15 @@
     "babel-preset-react": "^6.5.0",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
+    "lodash": "^4.17.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.0.1",
     "socket.io": "^1.4.5",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "nodemon --config ./nodemon.json",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
